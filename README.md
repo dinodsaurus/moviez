@@ -1,0 +1,1 @@
+# Webcamp 2018 Workshop - GraphQL to the (frontend) rescue
