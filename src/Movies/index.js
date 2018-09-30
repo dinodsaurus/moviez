@@ -8,7 +8,7 @@ import type { OperationComponent, QueryProps } from 'react-apollo';
 
 import Movies from './Movies';
 
-import type { MovieType, InputProps } from './types';
+import type { GetMovies, GetMoviesVariables } from './__generated__/GetMovies';
 
 const MOVIES_QUERY = gql`
   query GetMovies($searchQuery: String!) {
@@ -20,13 +20,9 @@ const MOVIES_QUERY = gql`
   }
 `;
 
-type Response = {|
-  movies: MovieType[]
-|};
+type Props = GetMovies & QueryProps;
 
-type Props = Response & QueryProps;
-
-const renderMovies: OperationComponent<Response, InputProps, Props> = graphql(MOVIES_QUERY, {
+const renderMovies: OperationComponent<GetMovies, GetMoviesVariables, Props> = graphql(MOVIES_QUERY, {
   options: ({ searchQuery }) => ({
     variables: { searchQuery },
   }),

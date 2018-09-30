@@ -4,9 +4,9 @@ import {
   Box, Image, Heading, Divider, Text,
 } from 'gestalt';
 
-import type { MovieType } from './types';
+import type { GetMovies_movies as MovieType } from './__generated__/GetMovies';
 
-const Description = ({ movie }: {movie: MovieType}) => (
+export const Description = ({ movie }: {movie: MovieType}) => (
   <Box display="flex" direction="column" maxWidth={400}>
     <Box>
       <Heading size="sm">
@@ -21,7 +21,7 @@ const Description = ({ movie }: {movie: MovieType}) => (
   </Box>
 );
 
-const Poster = ({ movie }: {movie: MovieType}) => (
+export const Poster = ({ movie }: {movie: MovieType}) => (
   movie.poster_path
     ? (
       <Box display="flex" width={200} height={200}>
@@ -29,14 +29,14 @@ const Poster = ({ movie }: {movie: MovieType}) => (
           naturalWidth={1}
           naturalHeight={1}
           fit="contain"
-          alt={`${movie.title} poster`}
+          alt="Poster"
           src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
         />
       </Box>
     ) : null
 );
 
-const Movie = (movie, i) => (
+export const Movie = (movie: MovieType, i: number) => (
   <Fragment key={i}>
     <Box display="flex" padding={2} direction="row">
       <Poster movie={movie} />

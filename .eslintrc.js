@@ -5,6 +5,7 @@ module.exports = {
         "flowtype"
     ],
     "rules": {
+        "max-len": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "flowtype/boolean-style": [
             2,
