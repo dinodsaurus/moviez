@@ -1,37 +1,22 @@
 // @flow
 import React from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { Query } from 'react-apollo';
 import { Spinner, Heading } from 'gestalt';
 
-import type { OperationComponent, QueryProps } from 'react-apollo';
-
 import Movies from './Movies';
+import MOVIES_QUERY from './MoviesQuerie';
 
-import type { GetMovies, GetMoviesVariables } from './__generated__/GetMovies';
+import type { GetMoviesVariables } from './__generated__/GetMovies';
 
-const MOVIES_QUERY = gql`
-  query GetMovies($searchQuery: String!) {
-    movies(query: $searchQuery) {
-      title
-      poster_path
-      overview
-    }
-  }
-`;
 
-type Props = GetMovies & QueryProps;
+export default ({ searchQuery }: GetMoviesVariables) => (
+  <Query query={MOVIES_QUERY} variables={{ searchQuery }}>
+    {({ loading, error, data: { movies } }) => {
+      if (loading) return <Spinner show accessibilityLabel="Movies" />;
+      if (error) return <Heading>ERROR :O</Heading>;
+      if (!movies) return <Heading>No Movies :(</Heading>;
 
-const renderMovies: OperationComponent<GetMovies, GetMoviesVariables, Props> = graphql(MOVIES_QUERY, {
-  options: ({ searchQuery }) => ({
-    variables: { searchQuery },
-  }),
-});
-
-export default renderMovies(({ data: { loading, movies, error } }) => {
-  if (loading) return <Spinner show accessibilityLabel="Movies" />;
-  if (error) return <Heading>ERROR :O</Heading>;
-  if (!movies) return <Heading>No Movies :(</Heading>;
-
-  return <Movies movies={movies} />;
-});
+      return <Movies movies={movies} />;
+    }}
+  </Query>
+);

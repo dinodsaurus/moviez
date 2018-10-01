@@ -6,6 +6,7 @@
     "apollo-boost": "^0.1.16",
     "gestalt": "^0.81.0",
     "graphql": "^14.0.2",
+    "graphql-anywhere": "^4.1.19",
     "graphql-tag": "^2.9.2",
     "react": "^16.5.2",
     "react-apollo": "^2.2.3",
