@@ -1,7 +1,7 @@
 // @flow
 import React, { Fragment } from 'react';
-import gql from 'graphql-tag';
-import { filter } from 'graphql-anywhere';
+// import gql from 'graphql-tag';
+// import { filter } from 'graphql-anywhere';
 import {
   Box, Image, Heading, Divider, Text,
 } from 'gestalt';
@@ -23,14 +23,14 @@ export const Description = ({ movie }: {movie: MovieType}) => (
   </Box>
 );
 
-Description.fragments = {
-  movie: gql`
-    fragment DescriptionDetails on Movie {
-      title
-      overview
-    }
-  `,
-};
+// Description.fragments = {
+//   movie: gql`
+//     fragment DescriptionDetails on Movie {
+//       title
+//       overview
+//     }
+//   `,
+// };
 
 export const Poster = ({ movie }: {movie: MovieType}) => (
   movie.poster_path
@@ -51,7 +51,8 @@ export const Movie = (movie: MovieType, i: number) => (
   <Fragment key={i}>
     <Box display="flex" padding={2} direction="row">
       <Poster movie={movie} />
-      <Description movie={filter(Description.fragments.movie, movie)} />
+      <Description movie={movie} />
+      {/* <Description movie={filter(Description.fragments.movie, movie)} /> */}
     </Box>
     <Divider />
   </Fragment>

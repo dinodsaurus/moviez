@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {
   Box,
@@ -7,13 +8,20 @@ import {
 } from 'gestalt';
 import Movies from './Movies';
 
-class App extends React.Component {
+type State = {|
+  searchQuery: string,
+  searchText: string
+|};
+
+class App extends React.Component<{}, State> {
   state = {
     searchQuery: '',
     searchText: '',
   }
 
-  changeSearch = (evt) => {
+  timeout = null
+
+  changeSearch = (evt: { value: string }) => {
     const searchQuery = evt.value;
     this.setState({ searchText: searchQuery });
     if (this.timeout) clearTimeout(this.timeout);

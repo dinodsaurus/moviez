@@ -12,7 +12,7 @@ import type { GetMoviesVariables } from './__generated__/GetMovies';
 export default ({ searchQuery }: GetMoviesVariables) => (
   <Query query={MOVIES_QUERY} variables={{ searchQuery }}>
     {({ loading, error, data: { movies } }) => {
-      if (loading) return <Spinner show accessibilityLabel="Movies" />;
+      if (loading) return <Spinner show accessibilityLabel="Movies loader" />;
       if (error) return <Heading>ERROR :O</Heading>;
       if (!movies) return <Heading>No Movies :(</Heading>;
 
