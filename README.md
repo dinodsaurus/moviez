@@ -2,6 +2,8 @@
 
 ### Links
 
+[Backend Repo](https://github.com/agustif/movie-database-graphql)
+
 [Backend](https://movie-database-graphql-jaogdcftbn.now.sh/graphiql)
 
 [How to graphql](https://www.howtographql.com/)
